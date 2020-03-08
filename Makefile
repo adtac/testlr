@@ -7,7 +7,7 @@ JAVA_BIN  = $(shell which java)
 JAVAC_BIN = $(shell which javac)
 JAR_BIN   = $(shell which jar)
 
-ANTLR_JAR = antlr-4.7.1-complete.jar
+ANTLR_JAR = antlr-4.8-complete.jar
 
 ext_c    = c
 ext_java = java
@@ -21,7 +21,7 @@ all: rust.jar
 	find tests/$(basename $@) -name \*.$(ext_$(basename $@)) -print0 | parallel -j $(shell nproc) --null java -cp ${ANTLR_JAR}:$< rust.main
 
 ${ANTLR_JAR}:
-	curl "https://www.antlr.org/download/antlr-4.7.1-complete.jar" -o ${ANTLR_JAR}
+	curl "https://www.antlr.org/download/antlr-4.8-complete.jar" -o ${ANTLR_JAR}
 
 .PRECIOUS: ${JAVA_DIR}/%
 ${JAVA_DIR}/%: %.g4
